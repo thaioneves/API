@@ -18,10 +18,14 @@ class Prato {
         float $preco
         
     ) {
-        $this->idPrato = $id;
-        $this->nomePrato = $nome;
-        $this->descricao = $descricao;
-        $this->preco = $preco;
+        //$this->idPrato = $id;
+        //$this->nomePrato = $nome;
+        //$this->descricao = $descricao;
+        //$this->preco = $preco;
+        $this->setidPrato($id);
+        $this->setnomePrato($nome);
+        $this->setDescricao($descricao);
+        $this->setPreco($preco);
     }
 
     public function getnomePrato(): string {
@@ -44,12 +48,26 @@ class Prato {
     public function setDescricao(string $pDescricao) : void{
         $this->descricao = $pDescricao;
     }
+    public function getPreco(): float {
+        return $this->preco;
+    }
 
     public function getPrecoFormatado(): string {
         return "R$" . number_format($this->preco, 2);
     }
+
+    public function setPreco(float $pPreco) : void{
+        if ($pPreco <= 0) {
+            throw new Exception("O preço do prato deve ser maior que zero.");
+        }
+        $this->preco = $pPreco;
+    }
     public function getIdPrato(): int {
         return $this->idPrato;
+    }
+
+    public function setIdPrato(int $pId) : void{
+        $this->idPrato = $pId;
     }
     public function getPratoHTML() : string{
     return "Id: " . $this->getIdPrato() . "<br>

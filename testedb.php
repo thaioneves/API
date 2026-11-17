@@ -32,3 +32,10 @@ echo $minhaBebida->getBebidaHTML();
 //Sobremesas
 $minhaSobremesa = new Sobremesa(1, "Pudim", "Pudim de leite condensado", 12.99);
 echo $minhaSobremesa->getSobremesaHTML();
+
+try {
+    $meuSegundoPrato = new Prato(2, "Lasanha", "Lasanha de carne com molho branco", 39.99);
+    echo $meuSegundoPrato->getPratoHTML();
+} catch (\Throwable $th) {
+    echo "Erro: " . $th->getMessage();
+}
