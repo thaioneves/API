@@ -2,6 +2,8 @@
 
 namespace API\Models;
 
+use Exception;
+
 class Prato {
     private int $idPrato;
     private string $nomePrato;
@@ -25,8 +27,22 @@ class Prato {
     public function getnomePrato(): string {
         return $this->nomePrato;
     }
+
+    public function setnomePrato(string $pNomePrato): void { if ($pNomePrato == "") {
+            throw new Exception("O nome do prato precisa ser preenchido.");
+        } else if (strlen($pNomePrato) < 3) {
+            throw new Exception("O nome do prato deve ter pelo menos 3 caracteres.");
+        }
+        
+    $this->nomePrato = $pNomePrato;
+
+    }
     public function getDescricao(): string {
         return $this->descricao;
+    }
+
+    public function setDescricao(string $pDescricao) : void{
+        $this->descricao = $pDescricao;
     }
 
     public function getPrecoFormatado(): string {
