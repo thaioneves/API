@@ -39,3 +39,11 @@ try {
 } catch (\Throwable $th) {
     echo "Erro: " . $th->getMessage();
 }
+
+try {
+    $meuSegundaBebida = new Bebida(2, "Guaraná", "Refrigerante de 350ml", 0, 4.99);
+    echo $meuSegundaBebida->getBebidaHTML();
+} catch (\Throwable $th) {
+    echo "Erro: " . $th->getMessage();
+}
+
