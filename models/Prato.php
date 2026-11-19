@@ -65,7 +65,8 @@ class Prato {
         $this->idPrato = $pId;
     }
  
-    public function setnomePrato(string $pNomePrato): void { if ($pNomePrato == "") {
+    public function setnomePrato(string $pNomePrato): void { 
+        if ($pNomePrato == "") {
             throw new Exception("O nome do prato precisa ser preenchido.");
         } else if (strlen($pNomePrato) < 3) {
             throw new Exception("O nome do prato deve ter pelo menos 3 caracteres.");

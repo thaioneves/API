@@ -50,6 +50,21 @@ INSERT INTO sobremesas
 VALUES 
 ('Sorvete de Negresco','Um doce frio e saboroso em dias de extremo calor, sabor chocolate com pedaços de negresgo ', 15.99),
 ('Mousse de Morango','Um delicioso Mousse feito de Morangos muito deliciosos', 20.00),
-('Bolo de chocolate', 'Uma fatia deliciosa e generosa de chocolate', 18.00);
+('Bolo de chocolate', 'Uma fatia deliciosa e generosa de chocolate', 18.00)
 
+CREATE TABLE marmitas(
+idMarmita INT AUTO_INCREMENT PRIMARY KEY, 
+pratoMarmita VARCHAR(100) NOT NULL UNIQUE,
+precoMarmita DECIMAL(6,2) NOT NULL,
+validadeMarmita DATE NOT NULL
+)
 
+INSERT INTO marmitas
+(pratoMarmita, precoMarmita, validadeMarmita)
+
+VALUES 
+('Marmita executiva - Parmediana de frango', 36.99, 2026-11-20),
+('Marmita economica - Costela', 25.99, 2026-11-20),
+('Marmita economica - Panqueca de carne', 20.99, 2026-11-20)
+
+SELECT *FROM marmitas

@@ -7,7 +7,7 @@ use Exception;
 class Bebida {
     private int $idBebida;
     private string $nomeBebida;
-    private string $volume;
+    private int $volume;
     private bool $alcoolico = false;
     private float $preco;
     private string $tabela = "bebidas";
@@ -15,7 +15,7 @@ class Bebida {
     public function __construct(
         int $id,
         string $nome,
-        string $volume,
+        int $volume,
         bool   $alcoolico,
         float $preco
        
@@ -35,7 +35,7 @@ class Bebida {
     public function getnomeBebida(): string {
         return $this->nomeBebida;
     }
-    public function getVolume(): string {
+    public function getVolume(): int {
         return $this->volume;
     }
     public function getAlcoolicoTexto(): string {
@@ -61,31 +61,41 @@ class Bebida {
         $this->idBebida = $pId;
     }
 
-    public function setnomeBebida(string $pNomeBebida): void { if ($pNomeBebida == "") {
-        throw new Exception("O nome da bebida precisa ser preenchido.");
-        } else if (strlen($pNomeBebida) < 3) {
-            throw new Exception("O nome da bebida deve ter pelo menos 3 caracteres.");
+    public function setNomeBebida(string $nomeBebida): void {
+        //Não pode ser vazia, então vamos validar antes de atribuir o valor à propriedade.
+        //Ao menos 3 caractere deve ser fornecido para o nome da bebida.
+        if ($nomeBebida == ""){
+            throw new Exception("O nome da bebida não pode ser vazio. Por favor, forneça um nome válido.");
+        } else if (strlen($nomeBebida) < 3) {
+            throw new Exception("O nome da bebida deve ter pelo menos 3 caracteres. Por favor, forneça um nome mais longo.");
         }
-    $this->nomeBebida = $pNomeBebida;
+        $this->nomeBebida = $nomeBebida;
     }
-
-    public function setVolume(string $pVolume): void { if ($pVolume == "") {
-        throw new Exception("O volume da bebida precisa ser preenchido.");
-        } else if (strlen($pVolume) < 2) {
-            throw new Exception("O volume da bebida deve ter pelo menos 2 caracteres.");
-        }
+ 
+    public function setVolume(int $pVolume): void {
+        //O volume da bebida deve ser maior que 200
+       if ($pVolume < 200) {
+            throw new Exception("O Volume da bebida precisa ser maior que 200ml");
+           }
         $this->volume = $pVolume;
     }
-
-    public function setAlcoolico(bool $pAlcoolico): void {
+ 
+    public function setAlcoolico(bool $pAlcoolico): void
+    {
+        //O valor de alcoolico deve ser TRUE ou FALSE
+       // if ($pAlcoolico == true || $pAlcoolico == false) {
+            //throw new Exception("O atributo alcoolico aceita apenas TRUE | FALSE");
+ 
+       // }
         $this->alcoolico = $pAlcoolico;
     }
 
-    public function setPreco(float $pPreco): void {
-        if ($pPreco <= 0) {
-            throw new Exception("O preço da bebida deve ser maior que zero.");
+    public function setPreco(float $preco): void {
+        //Não pode ser negativo, nem zero, então vamos validar antes de atribuir o valor à propriedade.
+        //O valor de preço deve ser maior do que zero
+        if ($preco <= 0) {
+            throw new Exception("O valor de preço deve ser maior que zero. Por favor, forneça um valor válido.");
         }
-        $this->preco = $pPreco;
+        $this->preco = $preco;
     }
-
-}
+    }
